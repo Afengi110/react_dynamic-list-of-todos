@@ -6,12 +6,12 @@ import { Todo } from '../../types/Todo';
 
 type Props = {
   todo: Todo;
-  setSelectedTodoId: React.Dispatch<React.SetStateAction<Todo | null>>;
+  setSelectedTodo: React.Dispatch<React.SetStateAction<Todo | null>>;
 };
 
-export const TodoModal: React.FC<Props> = ({ todo, setSelectedTodoId }) => {
+export const TodoModal: React.FC<Props> = ({ todo, setSelectedTodo }) => {
   const [loading, setLoading] = useState(true);
-  const [UserInfo, setUserInfo] = useState<User>();
+  const [userInfo, setUserInfo] = useState<User>();
 
   useEffect(() => {
     getUser(todo.userId)
@@ -40,7 +40,7 @@ export const TodoModal: React.FC<Props> = ({ todo, setSelectedTodoId }) => {
               type="button"
               className="delete"
               data-cy="modal-close"
-              onClick={() => setSelectedTodoId(null)}
+              onClick={() => setSelectedTodo(null)}
             />
           </header>
 
@@ -58,7 +58,7 @@ export const TodoModal: React.FC<Props> = ({ todo, setSelectedTodoId }) => {
 
               {' by '}
 
-              <a href={`mailto:${UserInfo?.email}`}>{UserInfo?.name}</a>
+              <a href={`mailto:${userInfo?.email}`}>{userInfo?.name}</a>
             </p>
           </div>
         </div>

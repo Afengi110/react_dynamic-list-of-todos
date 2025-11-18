@@ -3,7 +3,7 @@ import { Todo } from '../../types/Todo';
 
 type Props = {
   todos: Todo[];
-  setFiltredTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
+  setFilteredTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
 };
 
 enum SortType {
@@ -39,15 +39,15 @@ function getPreparedTodos(
   return preparedTodos;
 }
 
-export const TodoFilter: React.FC<Props> = ({ todos, setFiltredTodos }) => {
+export const TodoFilter: React.FC<Props> = ({ todos, setFilteredTodos }) => {
   const [sortField, setSortField] = useState<SortType>(SortType.all);
   const [searchQuery, setSearchQuery] = useState<string>('');
 
   useEffect(() => {
     const filtered = getPreparedTodos(todos, sortField, searchQuery);
 
-    setFiltredTodos(filtered);
-  }, [todos, sortField, searchQuery, setFiltredTodos]);
+    setFilteredTodos(filtered);
+  }, [todos, sortField, searchQuery, setFilteredTodos]);
 
   return (
     <form className="field has-addons">

@@ -12,9 +12,9 @@ import { Todo } from './types/Todo';
 
 export const App: React.FC = () => {
   const [todosFromServer, setTodosFromServer] = useState<Todo[]>([]);
-  const [filtredTodos, setFiltredTodos] = useState<Todo[]>([]);
+  const [filteredTodos, setFilteredTodos] = useState<Todo[]>([]);
   const [loading, setLoading] = useState(true);
-  const [selectedTodo, setTodo] = useState<Todo | null>(null);
+  const [selectedTodo, setSelectedTodo] = useState<Todo | null>(null);
 
   useEffect(() => {
     getTodos()
@@ -32,7 +32,7 @@ export const App: React.FC = () => {
             <div className="block">
               <TodoFilter
                 todos={todosFromServer}
-                setFiltredTodos={setFiltredTodos}
+                setFilteredTodos={setFilteredTodos}
               />
             </div>
 
@@ -40,9 +40,9 @@ export const App: React.FC = () => {
               {loading && <Loader />}
               {!loading && todosFromServer.length > 0 && (
                 <TodoList
-                  todos={filtredTodos}
+                  todos={filteredTodos}
                   selectedTodo={selectedTodo}
-                  setSelectedTodo={setTodo}
+                  setSelectedTodo={setSelectedTodo}
                 />
               )}
             </div>
@@ -51,7 +51,7 @@ export const App: React.FC = () => {
       </div>
 
       {selectedTodo !== null && (
-        <TodoModal todo={selectedTodo} setSelectedTodoId={setTodo} />
+        <TodoModal todo={selectedTodo} setSelectedTodo={setSelectedTodo} />
       )}
     </>
   );
